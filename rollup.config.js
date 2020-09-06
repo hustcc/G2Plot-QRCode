@@ -8,7 +8,7 @@ module.exports = [{
   input: 'src/index.ts',
   output: {
     file: 'dist/g2plot-qrcode.min.js',
-    name: 'G2PlotQrcode',
+    name: 'G2PlotQRCode',
     format: 'umd',
     sourcemap: false,
   },
