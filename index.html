@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>G2Plot-QCode</title>
+<style>
+  body {
+    padding: 16px;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  .container .header {
+    flex-basis: 32px;
+  }
+
+  .container .generator {
+    flex: 1;
+    display: flex;
+  }
+
+  .container .generator .config .config-item {
+    margin-bottom: 8px;
+  }
+
+  .container .generator .config .config-item * {
+    width: 360px;
+  }
+
+  .container .generator .config .config-item.level * {
+    width: auto;
+  }
+
+  #qrcode-result {
+    margin-left: 32px;
+  }
+
+  canvas {
+    border: 1px solid #999;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <!-- header -->
+  <div class="header">
+    <h2>G2Plot QRCode Generator</h2>
+  </div>
+
+  <div class="generator">
+    <div class="config">
+      <div class="text config-item">
+        <div class="column col-3">
+          <div>Text:</div>
+        </div>
+        <div class="column">
+          <textarea onchange="onChange('data', this.value)">Hello, g2plot qrcode!</textarea>
+        </div>
+      </div>
+
+      <div class="size config-item">
+        <div class="column col-3">
+          <div>Size:</div>
+        </div>
+        <div class="column">
+          <input type="range" min="64" max="400" value="120" onchange="onChange('size', this.value)">
+        </div>
+      </div>
+
+      <div class="padding config-item">
+        <div class="column col-3">
+          <div>Padding:</div>
+        </div>
+        <div class="column">
+          <input type="range" min="0" max="16" value="8" onchange="onChange('padding', this.value)">
+        </div>
+      </div>
+
+      <div class="level config-item">
+        <div>CorrectLevel:</div>
+        <label><input name="correctLevel" type="radio" value="L" onchange="onChange('correctLevel', this.value)" /> L </label> 
+        <label><input name="correctLevel" type="radio" value="M" onchange="onChange('correctLevel', this.value)" /> M </label> 
+        <label><input name="correctLevel" type="radio" value="H" checked onchange="onChange('correctLevel', this.value)" /> H </label> 
+        <label><input name="correctLevel" type="radio" value="Q" onchange="onChange('correctLevel', this.value)" /> Q </label> 
+      </div>
+       
+      <div class="foreground-color config-item">
+        <div>Foreground</div>
+        <input type="color" value="#000" onchange="onChange('foregroundColor', this.value)">
+      </div>
+
+      <div class="background-color config-item">
+        <div>Background</div>
+        <input type="color" value="#fff" onchange="onChange('backgroundColor', this.value)">
+      </div>
+    </div>
+    <div class="qrcode" id="qrcode-result"></div>
+  </div>
+</div>
+<script src="https://unpkg.com/@antv/g2plot@2.0.0-beta.3/dist/g2plot.min.js"></script>
+<script src="./dist/g2plot-qrcode.min.js"></script>
+<script>
+  // 第一次默认渲染
+  const qrcodePlot = new G2Plot.G2Plot('qrcode-result', { 
+    ...G2PlotQrcode.defaultOptions // TODO 等 g2plot 新版发布，可以解决，不用传入
+  }, G2PlotQrcode.adaptor, G2PlotQrcode.defaultOptions);
+
+  qrcodePlot.render();;
+
+  function onChange(key, value) {
+    switch(key) {
+      case 'size':
+        value = Number(value);
+        qrcodePlot.changeSize(value, value);
+        break;
+      case 'padding':
+        value = Number(value);
+        qrcodePlot.chart.padding = value; // TODO 等 g2plot 新版发布，可以解决，不用传入
+      case 'data':
+      case 'correctLevel':
+      case 'backgroundColor':
+      case 'foregroundColor':
+        qrcodePlot.update({
+          ...qrcodePlot.options,
+          [key]: value,
+        });
+        break;
+    }
+  }
+</script>
+
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- sorry for ad -->
+<ins class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-7292810486004926"
+      data-ad-slot="7806394673"
+      data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</body>
+</html>

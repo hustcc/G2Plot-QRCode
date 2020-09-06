@@ -1,0 +1,63 @@
+{
+  "name": "g2plot-qrcode",
+  "version": "1.0.0",
+  "description": "Generate QRCode based on AntV/G2Plot.",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "unpkg": "dist/g2plot-qrcode.min.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "esm",
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rimraf -rf lib esm dist",
+    "lint-staged": "lint-staged",
+    "test": "npm run build",
+    "build:umd": "rimraf ./dist && rollup -c",
+    "build:cjs": "rimraf ./lib && tsc --module commonjs --outDir lib",
+    "build:esm": "rimraf ./esm && tsc --module ESNext --outDir esm",
+    "build": "npm run build:cjs && npm run build:esm && npm run build:umd",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "qrcode-generator": "^1.4.4"
+  },
+  "peerDependencies": {
+    "@antv/g2plot": "^2.0.0-beta.3"
+  },
+  "keywords": [
+    "g2plot",
+    "qrcode"
+  ],
+  "devDependencies": {
+    "@antv/g2plot": "^2.0.0-beta.3",
+    "@commitlint/cli": "^8.2.0",
+    "@rollup/plugin-commonjs": "^15.0.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "husky": "^3.0.5",
+    "lint-staged": "^9.3.0",
+    "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
+    "rollup": "^2.26.10",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-size": "^0.2.2",
+    "rollup-plugin-typescript": "^1.0.1",
+    "rollup-plugin-uglify": "^6.0.3",
+    "typescript": "^3.6.3"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}
