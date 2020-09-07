@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <title>G2Plot-QCode</title>
 <style>
   body {
@@ -18,6 +19,7 @@
   .container .generator {
     flex: 1;
     display: flex;
+    flex-wrap: wrap;
   }
 
   .container .generator .config .config-item {
@@ -25,7 +27,7 @@
   }
 
   .container .generator .config .config-item * {
-    width: 360px;
+    width: 320px;
   }
 
   .container .generator .config .config-item.level * {
@@ -33,15 +35,24 @@
   }
 
   #qrcode-result {
-    margin-left: 32px;
+    margin-left: 16px;
   }
 
   canvas {
     border: 1px solid #999;
   }
+
+  .github-url {
+      color: #a6619c;
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      text-decoration: none;
+    }
 </style>
 </head>
 <body>
+<a class="github-url" href="https://github.com/hustcc/g2plot-qrcode">g2plot-qrcode</a>
 <div class="container">
   <!-- header -->
   <div class="header">
@@ -102,10 +113,10 @@
 <script src="https://unpkg.com/g2plot-qrcode@1"></script>
 <script>
   // 第一次默认渲染
-  const qrcodePlot = new G2Plot.G2Plot('qrcode-result', { 
+  var qrcodePlot = new G2Plot.G2Plot('qrcode-result', { 
   }, G2PlotQRCode.adaptor, G2PlotQRCode.defaultOptions);
 
-  qrcodePlot.render();;
+  qrcodePlot.render();
 
   function onChange(key, value) {
     switch(key) {
@@ -119,10 +130,8 @@
       case 'correctLevel':
       case 'backgroundColor':
       case 'foregroundColor':
-        qrcodePlot.update({
-          ...qrcodePlot.options,
-          [key]: value,
-        });
+        var newOptions = Object.assign({}, qrcodePlot.options, { [key]: value });
+        qrcodePlot.update(newOptions);
         break;
     }
   }
