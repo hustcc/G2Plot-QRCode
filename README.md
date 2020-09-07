@@ -17,7 +17,7 @@ $ npm i --save g2plot-qrcode
 
 ```ts
 import { G2Plot } from '@antv/g2plot';
-import { render } from 'g2plot-qrcode';
+import { adaptor, defaultOptions } from 'g2plot-qrcode';
 
 const qr = new G2Plot('container', {
   data: 'Hello, g2plot qrcode!',
@@ -28,7 +28,7 @@ const qr = new G2Plot('container', {
   foregroundColor: 'black',
   typeNumber: 0,
   correctLevel: 'H', // L M H Q
-});
+}, adaptor, defaultOptions);
 
 qr.render();
 ```
