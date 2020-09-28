@@ -109,11 +109,11 @@
     <div class="qrcode" id="qrcode-result"></div>
   </div>
 </div>
-<script src="https://unpkg.com/@antv/g2plot@2.0.0-beta.4/dist/g2plot.min.js"></script>
+<script src="https://unpkg.com/@antv/g2plot@2"></script>
 <script src="https://unpkg.com/g2plot-qrcode@1"></script>
 <script>
   // 第一次默认渲染
-  var qrcodePlot = new G2Plot.G2Plot('qrcode-result', { 
+  var qrcodePlot = new G2Plot.P('qrcode-result', {
   }, G2PlotQRCode.adaptor, G2PlotQRCode.defaultOptions);
 
   qrcodePlot.render();

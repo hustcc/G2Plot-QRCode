@@ -15,6 +15,8 @@ $ npm i --save g2plot-qrcode
 
 ## Usage
 
+ - render
+
 ```ts
 import { G2Plot } from '@antv/g2plot';
 import { adaptor, defaultOptions } from 'g2plot-qrcode';
@@ -31,6 +33,15 @@ const qr = new G2Plot('container', {
 }, adaptor, defaultOptions);
 
 qr.render();
+```
+
+ - update
+
+```ts
+qr.update({
+  ...qr.options,
+  data: 'hello world!',
+});
 ```
 
 

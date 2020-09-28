@@ -1,6 +1,6 @@
 {
   "name": "g2plot-qrcode",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generate QRCode based on AntV/G2Plot.",
   "license": "MIT",
   "main": "lib/index.js",
@@ -10,7 +10,8 @@
   "files": [
     "lib",
     "esm",
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
     "clean": "rimraf -rf lib esm dist",
@@ -19,21 +20,21 @@
     "build:umd": "rimraf ./dist && rollup -c",
     "build:cjs": "rimraf ./lib && tsc --module commonjs --outDir lib",
     "build:esm": "rimraf ./esm && tsc --module ESNext --outDir esm",
-    "build": "npm run build:cjs && npm run build:esm && npm run build:umd",
+    "build": "npm run clean && npm run build:cjs && npm run build:esm && npm run build:umd",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "qrcode-generator": "^1.4.4"
   },
   "peerDependencies": {
-    "@antv/g2plot": "^2.0.0-beta.4"
+    "@antv/g2plot": "^2.0.0"
   },
   "keywords": [
     "g2plot",
     "qrcode"
   ],
   "devDependencies": {
-    "@antv/g2plot": "^2.0.0-beta.4",
+    "@antv/g2plot": "^2.0.0",
     "@commitlint/cli": "^8.2.0",
     "@rollup/plugin-commonjs": "^15.0.0",
     "@rollup/plugin-node-resolve": "^9.0.0",

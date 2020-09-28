@@ -1,6 +1,7 @@
 import { Options } from '@antv/g2plot';
 
-export interface QRCodeOptions extends Omit<Options, 'data' | 'axis' | 'legend' | 'tooltip' | 'label'> {
+export interface QRCodeOptions
+  extends Omit<Options, 'data' | 'xField' | 'yField' | 'xAxis' | 'yAxis' | 'axis' | 'legend' | 'tooltip' | 'label'> {
   /** qrcode 的内容文本 */
   readonly data: string;
   /** 二维码 correctLevel */
@@ -12,7 +13,6 @@ export interface QRCodeOptions extends Omit<Options, 'data' | 'axis' | 'legend' 
   readonly foregroundColor?: string;
   /** 二维码背景色 */
   readonly backgroundColor?: string;
+  /** 单元格样式 */
   readonly cellStyle?: (i: number, j: number, isDark: boolean) => object;
-  // readonly outsideBorderColor?: string;
-  // readonly insideBorderColor?: string;
 }
