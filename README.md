@@ -6,6 +6,9 @@
 [![npm License](https://img.shields.io/npm/l/g2plot-qrcode.svg)](https://www.npmjs.com/package/g2plot-qrcode)
 
 
+![image](https://user-images.githubusercontent.com/7856674/98671518-5b0ff500-238f-11eb-8e61-73c17165ca10.png)
+
+
 ## Install
 
 ```bash
@@ -39,7 +42,6 @@ qr.render();
 
 ```ts
 qr.update({
-  ...qr.options,
   data: 'hello world!',
 });
 ```

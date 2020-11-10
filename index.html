@@ -130,8 +130,7 @@
       case 'correctLevel':
       case 'backgroundColor':
       case 'foregroundColor':
-        var newOptions = Object.assign({}, qrcodePlot.options, { [key]: value });
-        qrcodePlot.update(newOptions);
+        qrcodePlot.update({ [key]: value });
         break;
     }
   }
