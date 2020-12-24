@@ -6,7 +6,7 @@
 [![npm License](https://img.shields.io/npm/l/g2plot-qrcode.svg)](https://www.npmjs.com/package/g2plot-qrcode)
 
 
-![image](https://user-images.githubusercontent.com/7856674/98671518-5b0ff500-238f-11eb-8e61-73c17165ca10.png)
+![image](https://user-images.githubusercontent.com/7856674/103057591-e0b3d100-45da-11eb-8806-9c654bb84615.png)
 
 
 ## Install
