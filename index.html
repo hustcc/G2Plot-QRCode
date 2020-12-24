@@ -75,7 +75,7 @@
           <div>Size:</div>
         </div>
         <div class="column">
-          <input type="range" min="64" max="400" value="120" onchange="onChange('size', this.value)">
+          <input type="range" min="64" max="400" value="240" onchange="onChange('size', this.value)">
         </div>
       </div>
 
@@ -110,11 +110,15 @@
   </div>
 </div>
 <script src="https://unpkg.com/@antv/g2plot@2"></script>
-<script src="https://unpkg.com/g2plot-qrcode@1"></script>
+<script src="./dist/g2plot-qrcode.min.js"></script>
 <script>
   // 第一次默认渲染
   var qrcodePlot = new G2Plot.P('qrcode-result', {
-  }, G2PlotQRCode.adaptor, G2PlotQRCode.defaultOptions);
+  }, G2PlotQRCode.adaptor, {
+    ...G2PlotQRCode.defaultOptions,
+    width: 240,
+    height: 240,
+  });
 
   qrcodePlot.render();
 

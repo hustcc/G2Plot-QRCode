@@ -24,17 +24,10 @@ export const defaultOptions = {
  */
 export function adaptor(params: Params<QRCodeOptions>): Params<QRCodeOptions> {
   const { chart, options } = params;
-  const { data, correctLevel, typeNumber, foregroundColor, backgroundColor, cellStyle } = options;
+  const { data, correctLevel, typeNumber, foregroundColor, backgroundColor, pixelStyle } = options;
 
-  const dataArr = [];
-  // qrcode 的二维数组
-  const matrix = qr(data, correctLevel, typeNumber);
-  // 将qrcode 的二维数组排成数据
-  matrix.forEach((item, i) => {
-    item.forEach((isDark, j) => {
-      dataArr.push({ i, j, isDark });
-    });
-  });
+  // qrcode 的数据
+  const dataArr = qr(data, correctLevel, typeNumber);
 
   chart.data(dataArr);
 
@@ -50,12 +43,17 @@ export function adaptor(params: Params<QRCodeOptions>): Params<QRCodeOptions> {
   chart
     .polygon()
     .position('i*j')
-    .color('isDark', (v: boolean) => {
+    .color('isForeground', (v: boolean) => {
       return v ? foregroundColor : backgroundColor;
     })
-    .style('i*j*isDark', (i: number, j: number, isDark: boolean) => {
-      return typeof cellStyle === 'function' ? cellStyle(i, j, isDark) : {};
-    });
+    .style(
+      'i*j*isForeground*isBackground*detection*detectionPosition',
+      (i, j, isForeground, isBackground, detection, detectionPosition) => {
+        return typeof pixelStyle === 'function'
+          ? pixelStyle({ i, j, isForeground, isBackground, detection, detectionPosition })
+          : {};
+      },
+    );
 
   chart.coordinate().reflect('y');
 

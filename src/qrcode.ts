@@ -1,5 +1,6 @@
 import qrcode from 'qrcode-generator';
-import { QRCodeOptions } from './types';
+import { QRCodeOptions, PixelData } from './types';
+import { getPositionDetection } from './detection';
 
 // Enable UTF_8 support
 qrcode.stringToBytes = qrcode.stringToBytesFuncs['UTF-8'];
@@ -9,12 +10,31 @@ export function qr(
   data: QRCodeOptions['data'],
   correctLevel: QRCodeOptions['correctLevel'],
   typeNumber: QRCodeOptions['typeNumber'],
-): boolean[][] {
+): PixelData[] {
   const qr = qrcode(typeNumber, correctLevel);
   qr.addData(data);
   qr.make();
   const count = qr.getModuleCount();
 
-  // 两层 map
-  return new Array(count).fill(0).map((_, i) => new Array(count).fill(0).map((_, j) => qr.isDark(i, j)));
+  const qrcodePixel = [];
+
+  for (let i = 0; i < count; i++) {
+    for (let j = 0; j < count; j++) {
+      const isDark = qr.isDark(i, j);
+
+      const pd = getPositionDetection(i, j, count);
+
+      qrcodePixel.push({
+        i,
+        j,
+        // 前景
+        isForeground: isDark,
+        // 背景
+        isBackground: !isDark,
+        ...pd,
+      });
+    }
+  }
+
+  return qrcodePixel;
 }

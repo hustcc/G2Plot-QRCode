@@ -1,6 +1,6 @@
 {
   "name": "g2plot-qrcode",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Generate QRCode based on AntV/G2Plot.",
   "license": "MIT",
   "main": "lib/index.js",

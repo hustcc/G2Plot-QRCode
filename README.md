@@ -25,14 +25,20 @@ import { G2Plot } from '@antv/g2plot';
 import { adaptor, defaultOptions } from 'g2plot-qrcode';
 
 const qr = new G2Plot('container', {
+  // 二维码文本
   data: 'Hello, g2plot qrcode!',
+  // 间距
   padding: 8,
+  // 宽高
   width: 120,
   height: 120,
+  // 背景前景颜色
   backgroundColor: 'white',
   foregroundColor: 'black',
   typeNumber: 0,
   correctLevel: 'H', // L M H Q
+  // 样式自定义
+  pixelStyle: (pixelData) => ({}),
 }, adaptor, defaultOptions);
 
 qr.render();

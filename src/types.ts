@@ -1,5 +1,14 @@
 import { Options } from '@antv/g2plot';
 
+export type PixelData = {
+  i: number;
+  j: number;
+  isBackground: boolean;
+  isForeground: boolean;
+  detection: 'inner' | 'middle' | 'outer';
+  detectionPosition: 'tl' | 'tr' | 'bl';
+};
+
 export interface QRCodeOptions
   extends Omit<Options, 'data' | 'xField' | 'yField' | 'xAxis' | 'yAxis' | 'axis' | 'legend' | 'tooltip' | 'label'> {
   /** qrcode 的内容文本 */
@@ -14,5 +23,5 @@ export interface QRCodeOptions
   /** 二维码背景色 */
   readonly backgroundColor?: string;
   /** 单元格样式 */
-  readonly cellStyle?: (i: number, j: number, isDark: boolean) => object;
+  readonly pixelStyle?: (pixelData: PixelData) => object;
 }
