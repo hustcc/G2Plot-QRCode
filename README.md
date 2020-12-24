@@ -1,6 +1,6 @@
 # G2Plot-QRCode
 
-> G2Plot-QRCode: plugin based on G2Plot v2. [LIVE DEMO](https://git.hust.cc/G2Plot-QRCode/)
+> G2Plot-QRCode: plugin based on G2Plot v2. [LIVE DEMO](https://git.hust.cc/G2Plot-QRCode/), [CodeSandbox](https://codesandbox.io/s/g2plot-qrcode-sf6rv).
 
 [![npm Version](https://img.shields.io/npm/v/g2plot-qrcode.svg)](https://www.npmjs.com/package/g2plot-qrcode)
 [![npm License](https://img.shields.io/npm/l/g2plot-qrcode.svg)](https://www.npmjs.com/package/g2plot-qrcode)
