@@ -24,7 +24,7 @@ export const defaultOptions = {
  */
 export function adaptor(params: Params<QRCodeOptions>): Params<QRCodeOptions> {
   const { chart, options } = params;
-  const { data, correctLevel, typeNumber, foregroundColor, backgroundColor, pixelStyle } = options;
+  const { width, height, data, correctLevel, typeNumber, foregroundColor, backgroundColor, pixelStyle, icon } = options;
 
   // qrcode 的数据
   const dataArr = qr(data, correctLevel, typeNumber);
@@ -40,6 +40,7 @@ export function adaptor(params: Params<QRCodeOptions>): Params<QRCodeOptions> {
     },
   });
 
+  // pixel style
   chart
     .polygon()
     .position('i*j')
@@ -54,6 +55,26 @@ export function adaptor(params: Params<QRCodeOptions>): Params<QRCodeOptions> {
           : {};
       },
     );
+
+  // icon
+  if (icon) {
+    const { image, width: imageWdith = 32, height: imageHeight = 32 } = icon;
+    if (image) {
+      chart.annotation().shape({
+        render: (container) => {
+          container.addShape('image', {
+            attrs: {
+              x: (width - imageWdith) / 2,
+              y: (height - imageHeight) / 2,
+              width: imageWdith,
+              height: imageHeight,
+              img: image,
+            },
+          });
+        },
+      });
+    }
+  }
 
   chart.coordinate().reflect('y');
 

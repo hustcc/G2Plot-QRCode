@@ -22,6 +22,12 @@ export interface QRCodeOptions
   readonly foregroundColor?: string;
   /** 二维码背景色 */
   readonly backgroundColor?: string;
+  /** 二维码的 icon 中心图标 */
+  readonly icon?: {
+    readonly image: string;
+    readonly width?: number;
+    readonly height?: number;
+  };
   /** 单元格样式 */
   readonly pixelStyle?: (pixelData: PixelData) => object;
 }

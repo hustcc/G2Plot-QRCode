@@ -52,6 +52,35 @@ qr.update({
 });
 ```
 
+## Configure
+
+```ts
+export interface QRCodeOptions {
+  /** qrcode 的内容文本 */
+  readonly data: string;
+  /** 边框间距，默认 8px */
+  readonly padding?: number;
+  /** 二维码大小宽高，默认都是 120px */
+  readonly width: string;
+  readonly height: string;
+  /** 二维码 correctLevel，默认 H */
+  readonly correctLevel?: 'L' | 'M' | 'Q' | 'H';
+  /** 二维码 typeNumber，默认 0 */
+  readonly typeNumber?: any;
+  // readonly effect?: 'fusion' | 'round' | 'rect';
+  /** 二维码前景色，默认 black */
+  readonly foregroundColor?: string;
+  /** 二维码背景色，默认 white */
+  readonly backgroundColor?: string;
+  /** 二维码的 icon 中心图标，默认无 */
+  readonly icon?: {
+    readonly image: string; // 图片
+    readonly width?: number; // 图片宽高
+    readonly height?: number;
+  };
+  /** 单元格样式，默认无 */
+  readonly pixelStyle?: (pixelData: PixelData) => object;
+}
 
 ## License
 
