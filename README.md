@@ -81,6 +81,8 @@ export interface QRCodeOptions {
   /** 单元格样式，默认无 */
   readonly pixelStyle?: (pixelData: PixelData) => object;
 }
+```
+
 
 ## License
 
